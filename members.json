@@ -1,0 +1,564 @@
+[
+  {
+    "memberId": "M100",
+    "firstName": "Albin",
+    "lastName": "Bengtsson",
+    "phone": "070-1234567",
+    "email": "albin.bengtsson@scooterrental.se",
+    "status": "PREMIUM",
+    "rentalHistory": [
+      "1001",
+      "1001",
+      "1001",
+      "1001",
+      "1001",
+      "1001",
+      "1001",
+      "1001",
+      "1001",
+      "1001",
+      "1001",
+      "1002",
+      "1004",
+      "1009"
+    ]
+  },
+  {
+    "memberId": "M101",
+    "firstName": "Bengt",
+    "lastName": "Albinsson",
+    "phone": "070-7654321",
+    "email": "bengt.albinsson@scooterrental.se",
+    "status": "PREMIUM",
+    "rentalHistory": []
+  },
+  {
+    "memberId": "M102",
+    "firstName": "Kaj",
+    "lastName": "Persson",
+    "phone": "070-9876543",
+    "email": "kaj.persson@scooterrental.se",
+    "status": "STUDENT",
+    "rentalHistory": [
+      "1001",
+      "1001",
+      "1003"
+    ]
+  },
+  {
+    "memberId": "M103",
+    "firstName": "Lars-Erik",
+    "lastName": "Lundqvist",
+    "phone": "070-1112233",
+    "email": "lars-erik.lundqvist@scooterrental.se",
+    "status": "PREMIUM",
+    "rentalHistory": [
+      "1002",
+      "1005",
+      "1010"
+    ]
+  },
+  {
+    "memberId": "M104",
+    "firstName": "Gunilla",
+    "lastName": "Öberg",
+    "phone": "070-2223344",
+    "email": "gunilla.oberg@scooterrental.se",
+    "status": "STANDARD",
+    "rentalHistory": []
+  },
+  {
+    "memberId": "M105",
+    "firstName": "Per-Olof",
+    "lastName": "Viklund",
+    "phone": "070-3334455",
+    "email": "per-olof.viklund@scooterrental.se",
+    "status": "STANDARD",
+    "rentalHistory": [
+      "1003",
+      "1008"
+    ]
+  },
+  {
+    "memberId": "M106",
+    "firstName": "Inga-Lill",
+    "lastName": "Lindström",
+    "phone": "070-4445566",
+    "email": "inga-lill.lindstrom@scooterrental.se",
+    "status": "PREMIUM",
+    "rentalHistory": [
+      "1004",
+      "1006",
+      "1008"
+    ]
+  },
+  {
+    "memberId": "M107",
+    "firstName": "Sven-Åke",
+    "lastName": "Nilsson",
+    "phone": "070-5556677",
+    "email": "sven-ake.nilsson@scooterrental.se",
+    "status": "STANDARD",
+    "rentalHistory": []
+  },
+  {
+    "memberId": "M108",
+    "firstName": "Birgitta",
+    "lastName": "Holmlund",
+    "phone": "070-6667788",
+    "email": "birgitta.holmlund@scooterrental.se",
+    "status": "STANDARD",
+    "rentalHistory": [
+      "1001",
+      "1005"
+    ]
+  },
+  {
+    "memberId": "M109",
+    "firstName": "Jan-Olov",
+    "lastName": "Eriksson",
+    "phone": "070-7778899",
+    "email": "jan-olov.eriksson@scooterrental.se",
+    "status": "PREMIUM",
+    "rentalHistory": [
+      "1009",
+      "1010"
+    ]
+  },
+  {
+    "memberId": "M110",
+    "firstName": "Maj-Britt",
+    "lastName": "Olofsson",
+    "phone": "070-8889900",
+    "email": "maj-britt.olofsson@scooterrental.se",
+    "status": "STANDARD",
+    "rentalHistory": []
+  },
+  {
+    "memberId": "M111",
+    "firstName": "Kjell-Arne",
+    "lastName": "Berglund",
+    "phone": "070-9990011",
+    "email": "kjell-arne.berglund@scooterrental.se",
+    "status": "STANDARD",
+    "rentalHistory": [
+      "1011"
+    ]
+  },
+  {
+    "memberId": "M112",
+    "firstName": "Eva-Lena",
+    "lastName": "Söderlund",
+    "phone": "070-1010101",
+    "email": "eva-lena.soderlund@scooterrental.se",
+    "status": "PREMIUM",
+    "rentalHistory": [
+      "1012",
+      "1013",
+      "1014"
+    ]
+  },
+  {
+    "memberId": "M113",
+    "firstName": "Torbjörn",
+    "lastName": "Marklund",
+    "phone": "070-2020202",
+    "email": "torbjorn.marklund@scooterrental.se",
+    "status": "STANDARD",
+    "rentalHistory": []
+  },
+  {
+    "memberId": "M114",
+    "firstName": "Ann-Christin",
+    "lastName": "Nyström",
+    "phone": "070-3030303",
+    "email": "ann-christin.nystrom@scooterrental.se",
+    "status": "STANDARD",
+    "rentalHistory": [
+      "1015"
+    ]
+  },
+  {
+    "memberId": "M115",
+    "firstName": "Leif-Göran",
+    "lastName": "Sundqvist",
+    "phone": "070-4040404",
+    "email": "leif-goran.sundqvist@scooterrental.se",
+    "status": "PREMIUM",
+    "rentalHistory": [
+      "1016",
+      "1017"
+    ]
+  },
+  {
+    "memberId": "M116",
+    "firstName": "Britt-Marie",
+    "lastName": "Åström",
+    "phone": "070-5050505",
+    "email": "britt-marie.astrom@scooterrental.se",
+    "status": "STANDARD",
+    "rentalHistory": []
+  },
+  {
+    "memberId": "M117",
+    "firstName": "Stig-Olof",
+    "lastName": "Hägglund",
+    "phone": "070-6060606",
+    "email": "stig-olof.hagglund@scooterrental.se",
+    "status": "STANDARD",
+    "rentalHistory": [
+      "1018"
+    ]
+  },
+  {
+    "memberId": "M118",
+    "firstName": "Ulla-Britt",
+    "lastName": "Jonsson",
+    "phone": "070-7070707",
+    "email": "ulla-britt.jonsson@scooterrental.se",
+    "status": "PREMIUM",
+    "rentalHistory": [
+      "1019",
+      "1020",
+      "1021"
+    ]
+  },
+  {
+    "memberId": "M119",
+    "firstName": "Kent-Ove",
+    "lastName": "Forsberg",
+    "phone": "070-8080808",
+    "email": "kent-ove.forsberg@scooterrental.se",
+    "status": "STANDARD",
+    "rentalHistory": []
+  },
+  {
+    "memberId": "M120",
+    "firstName": "Mona-Lisa",
+    "lastName": "Edlund",
+    "phone": "070-9090909",
+    "email": "mona-lisa.edlund@scooterrental.se",
+    "status": "STANDARD",
+    "rentalHistory": [
+      "1022"
+    ]
+  },
+  {
+    "memberId": "M121",
+    "firstName": "Rolf-Gunnar",
+    "lastName": "Granberg",
+    "phone": "070-1212121",
+    "email": "rolf-gunnar.granberg@scooterrental.se",
+    "status": "PREMIUM",
+    "rentalHistory": [
+      "1023",
+      "1024"
+    ]
+  },
+  {
+    "memberId": "M122",
+    "firstName": "Siv-Inger",
+    "lastName": "Sjöberg",
+    "phone": "070-2323232",
+    "email": "siv-inger.sjoberg@scooterrental.se",
+    "status": "STANDARD",
+    "rentalHistory": []
+  },
+  {
+    "memberId": "M123",
+    "firstName": "Bo-Göran",
+    "lastName": "Strömberg",
+    "phone": "070-3434343",
+    "email": "bo-goran.stromberg@scooterrental.se",
+    "status": "STANDARD",
+    "rentalHistory": [
+      "1025"
+    ]
+  },
+  {
+    "memberId": "M124",
+    "firstName": "Gun-Britt",
+    "lastName": "Lundberg",
+    "phone": "070-4545454",
+    "email": "gun-britt.lundberg@scooterrental.se",
+    "status": "PREMIUM",
+    "rentalHistory": [
+      "1026",
+      "1027",
+      "1028"
+    ]
+  },
+  {
+    "memberId": "M125",
+    "firstName": "Lennart",
+    "lastName": "Englund",
+    "phone": "070-5656565",
+    "email": "lennart.englund@scooterrental.se",
+    "status": "STANDARD",
+    "rentalHistory": [
+      "1006"
+    ]
+  },
+  {
+    "memberId": "M126",
+    "firstName": "Kerstin",
+    "lastName": "Bergström",
+    "phone": "070-6767676",
+    "email": "kerstin.bergstrom@scooterrental.se",
+    "status": "STANDARD",
+    "rentalHistory": [
+      "1029"
+    ]
+  },
+  {
+    "memberId": "M127",
+    "firstName": "Hans-Erik",
+    "lastName": "Norberg",
+    "phone": "070-7878787",
+    "email": "hans-erik.norberg@scooterrental.se",
+    "status": "PREMIUM",
+    "rentalHistory": [
+      "1030",
+      "1031"
+    ]
+  },
+  {
+    "memberId": "M128",
+    "firstName": "Anita",
+    "lastName": "Hedlund",
+    "phone": "070-8989898",
+    "email": "anita.hedlund@scooterrental.se",
+    "status": "STANDARD",
+    "rentalHistory": []
+  },
+  {
+    "memberId": "M129",
+    "firstName": "Gunnar",
+    "lastName": "Lindgren",
+    "phone": "070-1313131",
+    "email": "gunnar.lindgren@scooterrental.se",
+    "status": "STANDARD",
+    "rentalHistory": [
+      "1032"
+    ]
+  },
+  {
+    "memberId": "M130",
+    "firstName": "Barbro",
+    "lastName": "Wikström",
+    "phone": "070-2424242",
+    "email": "barbro.wikstrom@scooterrental.se",
+    "status": "PREMIUM",
+    "rentalHistory": [
+      "1033",
+      "1034",
+      "1035"
+    ]
+  },
+  {
+    "memberId": "M131",
+    "firstName": "Mats-Ola",
+    "lastName": "Hellström",
+    "phone": "070-3535353",
+    "email": "mats-ola.hellstrom@scooterrental.se",
+    "status": "STANDARD",
+    "rentalHistory": []
+  },
+  {
+    "memberId": "M132",
+    "firstName": "Inger-Lise",
+    "lastName": "Holm",
+    "phone": "070-4646464",
+    "email": "inger-lise.holm@scooterrental.se",
+    "status": "STANDARD",
+    "rentalHistory": [
+      "1036"
+    ]
+  },
+  {
+    "memberId": "M133",
+    "firstName": "Ulf-Göran",
+    "lastName": "Nyberg",
+    "phone": "070-5757575",
+    "email": "ulf-goran.nyberg@scooterrental.se",
+    "status": "PREMIUM",
+    "rentalHistory": [
+      "1037",
+      "1038"
+    ]
+  },
+  {
+    "memberId": "M134",
+    "firstName": "Lisbeth",
+    "lastName": "Sandberg",
+    "phone": "070-6868686",
+    "email": "lisbeth.sandberg@scooterrental.se",
+    "status": "STANDARD",
+    "rentalHistory": []
+  },
+  {
+    "memberId": "M135",
+    "firstName": "Sören",
+    "lastName": "Blomqvist",
+    "phone": "070-7979797",
+    "email": "soren.blomqvist@scooterrental.se",
+    "status": "STANDARD",
+    "rentalHistory": [
+      "1039"
+    ]
+  },
+  {
+    "memberId": "M136",
+    "firstName": "Ann-Marie",
+    "lastName": "Sjögren",
+    "phone": "070-1414141",
+    "email": "ann-marie.sjogren@scooterrental.se",
+    "status": "PREMIUM",
+    "rentalHistory": [
+      "1040",
+      "1041",
+      "1042"
+    ]
+  },
+  {
+    "memberId": "M137",
+    "firstName": "Christer",
+    "lastName": "Dahlberg",
+    "phone": "070-2525252",
+    "email": "christer.dahlberg@scooterrental.se",
+    "status": "STANDARD",
+    "rentalHistory": []
+  },
+  {
+    "memberId": "M138",
+    "firstName": "Monica",
+    "lastName": "Sundberg",
+    "phone": "070-3636363",
+    "email": "monica.sundberg@scooterrental.se",
+    "status": "STANDARD",
+    "rentalHistory": [
+      "1043"
+    ]
+  },
+  {
+    "memberId": "M139",
+    "firstName": "Roger",
+    "lastName": "Lundström",
+    "phone": "070-4747474",
+    "email": "roger.lundstrom@scooterrental.se",
+    "status": "PREMIUM",
+    "rentalHistory": [
+      "1044",
+      "1045"
+    ]
+  },
+  {
+    "memberId": "M140",
+    "firstName": "Elisabeth",
+    "lastName": "Nordström",
+    "phone": "070-5858585",
+    "email": "elisabeth.nordstrom@scooterrental.se",
+    "status": "STANDARD",
+    "rentalHistory": []
+  },
+  {
+    "memberId": "M141",
+    "firstName": "Tomas",
+    "lastName": "Westerlund",
+    "phone": "070-6969696",
+    "email": "tomas.westerlund@scooterrental.se",
+    "status": "STANDARD",
+    "rentalHistory": [
+      "1046"
+    ]
+  },
+  {
+    "memberId": "M142",
+    "firstName": "Karin",
+    "lastName": "Ström",
+    "phone": "070-1515151",
+    "email": "karin.strom@scooterrental.se",
+    "status": "PREMIUM",
+    "rentalHistory": [
+      "1047",
+      "1048",
+      "1049"
+    ]
+  },
+  {
+    "memberId": "M143",
+    "firstName": "Håkan",
+    "lastName": "Björklund",
+    "phone": "070-2626262",
+    "email": "hakan.bjorklund@scooterrental.se",
+    "status": "STANDARD",
+    "rentalHistory": []
+  },
+  {
+    "memberId": "M144",
+    "firstName": "Susanne",
+    "lastName": "Ek",
+    "phone": "070-3737373",
+    "email": "susanne.ek@scooterrental.se",
+    "status": "STANDARD",
+    "rentalHistory": [
+      "2000"
+    ]
+  },
+  {
+    "memberId": "M145",
+    "firstName": "Peter",
+    "lastName": "Lind",
+    "phone": "070-4848484",
+    "email": "peter.lind@scooterrental.se",
+    "status": "PREMIUM",
+    "rentalHistory": [
+      "2001",
+      "2002"
+    ]
+  },
+  {
+    "memberId": "M146",
+    "firstName": "Maria",
+    "lastName": "Wallin",
+    "phone": "070-5959595",
+    "email": "maria.wallin@scooterrental.se",
+    "status": "STANDARD",
+    "rentalHistory": [
+      "1007"
+    ]
+  },
+  {
+    "memberId": "M147",
+    "firstName": "Anders",
+    "lastName": "Gustafsson",
+    "phone": "070-7171717",
+    "email": "anders.gustafsson@scooterrental.se",
+    "status": "STANDARD",
+    "rentalHistory": [
+      "2003"
+    ]
+  },
+  {
+    "memberId": "M148",
+    "firstName": "Lena",
+    "lastName": "Larsson",
+    "phone": "070-8282828",
+    "email": "lena.larsson@scooterrental.se",
+    "status": "PREMIUM",
+    "rentalHistory": [
+      "2004",
+      "2005",
+      "2006"
+    ]
+  },
+  {
+    "memberId": "M149",
+    "firstName": "Mikael",
+    "lastName": "Olsson",
+    "phone": "070-9393939",
+    "email": "mikael.olsson@scooterrental.se",
+    "status": "STANDARD",
+    "rentalHistory": []
+  }
+]

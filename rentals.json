@@ -1,0 +1,178 @@
+[
+  {
+    "memberId": "M100",
+    "itemId": "1000",
+    "pricePolicy": {
+      "policyType": "Standard"
+    },
+    "startTime": "2025-12-02T16:33:31.7289042",
+    "endTime": "2025-12-02T16:35:12.0470001",
+    "isActive": false,
+    "totalCost": 0.0
+  },
+  {
+    "memberId": "M100",
+    "itemId": "1000",
+    "pricePolicy": {
+      "policyType": "Standard"
+    },
+    "startTime": "2025-12-02T16:35:51.1382008",
+    "endTime": "2025-12-02T16:38:41.7908667",
+    "isActive": false,
+    "totalCost": 0.0
+  },
+  {
+    "memberId": "M100",
+    "itemId": "1000",
+    "pricePolicy": {
+      "policyType": "Standard"
+    },
+    "startTime": "2025-12-02T16:39:09.6530967",
+    "endTime": "2025-12-02T16:39:24.1287642",
+    "isActive": false,
+    "totalCost": 0.0
+  },
+  {
+    "memberId": "M100",
+    "itemId": "1000",
+    "pricePolicy": {
+      "policyType": "Standard"
+    },
+    "startTime": "2025-12-02T16:39:56.757452",
+    "endTime": "2025-12-02T16:40:12.703516",
+    "isActive": false,
+    "totalCost": 0.0
+  },
+  {
+    "memberId": "M100",
+    "itemId": "1000",
+    "pricePolicy": {
+      "policyType": "Standard"
+    },
+    "startTime": "2025-12-02T16:51:51.9305137",
+    "endTime": "2025-12-02T16:53:55.6265946",
+    "isActive": false,
+    "totalCost": 0.0
+  },
+  {
+    "memberId": "M100",
+    "itemId": "1000",
+    "pricePolicy": {
+      "policyType": "Standard"
+    },
+    "startTime": "2025-12-02T16:54:33.2864192",
+    "endTime": "2025-12-02T17:59:18.1659223",
+    "isActive": false,
+    "totalCost": 0.0
+  },
+  {
+    "id": "1001",
+    "memberId": "M102",
+    "itemId": "1001",
+    "pricePolicy": {
+      "policyType": "Standard"
+    },
+    "startTime": "2025-12-03 16:53",
+    "endTime": "2025-12-03 17:15",
+    "isActive": false,
+    "totalCost": 175.0
+  },
+  {
+    "id": "1002",
+    "memberId": "M100",
+    "itemId": "1000",
+    "startTime": "2025-12-03 17:16",
+    "endTime": "2025-12-04 10:04:20",
+    "isActive": false,
+    "totalCost": 5041.666666666667
+  },
+  {
+    "id": "1003",
+    "memberId": "M102",
+    "itemId": "1004",
+    "pricePolicy": {
+      "policyType": "Student"
+    },
+    "startTime": "2025-12-04 10:24:15",
+    "endTime": "2025-12-04 11:58:28",
+    "isActive": false,
+    "totalCost": 389.42888888888893
+  },
+  {
+    "id": "1004",
+    "memberId": "M100",
+    "itemId": "1000",
+    "startTime": "2025-12-04 10:27:03",
+    "endTime": "2025-12-04 11:58:38",
+    "isActive": false,
+    "totalCost": 457.91666666666663
+  },
+  {
+    "id": "1005",
+    "memberId": "M108",
+    "itemId": "1010",
+    "pricePolicy": {
+      "policyType": "Standard"
+    },
+    "startTime": "2025-12-04 16:44:54",
+    "endTime": "2025-12-04 16:54:26",
+    "isActive": false,
+    "totalCost": 43.69444444444444
+  },
+  {
+    "id": "1006",
+    "memberId": "M125",
+    "itemId": "1003",
+    "pricePolicy": {
+      "policyType": "Standard"
+    },
+    "startTime": "2025-12-04 16:45:04",
+    "endTime": "2025-12-04 16:54:50",
+    "isActive": false,
+    "totalCost": 45.577777777777776
+  },
+  {
+    "id": "1007",
+    "memberId": "M146",
+    "itemId": "2027",
+    "pricePolicy": {
+      "policyType": "Standard"
+    },
+    "startTime": "2025-12-04 16:45:14",
+    "isActive": true,
+    "totalCost": 0.0
+  },
+  {
+    "id": "1008",
+    "memberId": "M105",
+    "itemId": "1002",
+    "pricePolicy": {
+      "policyType": "Standard"
+    },
+    "startTime": "2025-12-04 16:45:28",
+    "isActive": true,
+    "totalCost": 0.0
+  },
+  {
+    "id": "1009",
+    "memberId": "M100",
+    "itemId": "1008",
+    "pricePolicy": {
+      "policyType": "Standard"
+    },
+    "startTime": "2025-12-04 16:45:44",
+    "isActive": true,
+    "totalCost": 0.0
+  },
+  {
+    "id": "1010",
+    "memberId": "M103",
+    "itemId": "1003",
+    "pricePolicy": {
+      "policyType": "Standard"
+    },
+    "startTime": "2025-12-04 17:07:01",
+    "isActive": true,
+    "totalCost": 0.0
+  }
+]
