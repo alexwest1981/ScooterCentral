@@ -5,7 +5,7 @@
 ![Maven](https://img.shields.io/badge/Maven-Build_Success-brightgreen?style=for-the-badge&logo=apachemaven)
 ![License](https://img.shields.io/badge/License-Educational-lightgrey?style=for-the-badge)
 ![Platform](https://img.shields.io/badge/Platform-Desktop-lightblue?style=for-the-badge&logo=windows)
-![Build](https://github.com/alexwest81/ScooterCentral/actions/workflows/maven.yml/badge.svg)
+[![Maven Build](https://github.com/alexwest1981/ScooterCentral/actions/workflows/maven.yml/badge.svg)](https://github.com/alexwest1981/ScooterCentral/actions/workflows/maven.yml)
 
 ---
 
