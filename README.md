@@ -5,6 +5,7 @@
 ![Maven](https://img.shields.io/badge/Maven-Build_Success-brightgreen?style=for-the-badge&logo=apachemaven)
 ![License](https://img.shields.io/badge/License-Educational-lightgrey?style=for-the-badge)
 ![Platform](https://img.shields.io/badge/Platform-Desktop-lightblue?style=for-the-badge&logo=windows)
+![Build](https://github.com/ditt-anvandarnamn/retro-scooter-central/actions/workflows/maven.yml/badge.svg)
 
 ---
 
@@ -56,12 +57,12 @@ Applikationen hanterar hela flödet i en uthyrningsverksamhet – från lagerhan
 
 Projektet följer en strikt **lagerarkitektur (Layered Architecture)** för att tydligt separera ansvar (*Separation of Concerns*).
 
-graph TD
-UI[UI Layer (Views)] --> Service[Service Layer]
-Service --> Persistence[Persistence Layer]
-Service --> Model[Model Layer]
-Persistence --> JSON[JSON Files]
-
+graph TD</br>
+UI[UI Layer (Views)] --> Service[Service Layer]</br>
+Service --> Persistence[Persistence Layer]</br>
+Service --> Model[Model Layer]</br>
+Persistence --> JSON[JSON Files]</br>
+</br>
 
 - **UI Layer** (`se.scooterrental.ui`):  
   JavaFX-vyer. Använder *callbacks* för kommunikation mellan vyer (t.ex. `LoginView` → `MainApp`).
