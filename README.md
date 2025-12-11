@@ -23,6 +23,22 @@ Applikationen hanterar hela flödet i en uthyrningsverksamhet – från lagerhan
 - [📄 Licens](#-licens)
 
 ---
+## 🚦 Project status
+
+Status: Active – under pågående utveckling.  
+Fokus ligger på stabil uthyrningslogik, förbättrad UI-upplevelse och utökad statistik/dashboards.
+---
+## 🖼️ Screenshots
+
+### Dashboard
+_Realtidsvy med taxameter, nyckeltal och grafer._
+
+![Dashboard screenshot](docs/images/dashboard.png)
+
+### Uthyrningsflöde
+_Utrustningsvy._
+![Rental screenshot](docs/images/equipment.png)
+---
 
 ## ✨ Funktioner
 
@@ -79,6 +95,32 @@ Persistence --> JSON[JSON Files]</br>
   Hanterar serialisering via *GSON*. Löser polymorfismproblem med anpassade adaptrar.
 
 ---
+## 📁 Projektstruktur
+
+Projektet följer en klassisk Maven-struktur för ett JavaFX-skrivbordsprojekt:</br>
+ScooterCentral/</br>
+├── .github/</br>
+│ └── workflows/</br>
+│ └── maven.yml # CI-build med Maven</br>
+├── src/</br>
+│ ├── main/</br>
+│ │ ├── java/</br>
+│ │ │ └── se/</br>
+│ │ │ └── scooterrental/</br>
+│ │ │ ├── ui/ # JavaFX-vyer och controllers</br>
+│ │ │ ├── service/ # Affärslogik (RentalService, Inventory m.m.)</br>
+│ │ │ ├── model/ # Domänmodeller (Item, Scooter, Sled, Member ...)</br>
+│ │ │ └── persistence/ # GSON/JSON-hantering, adaptrar</br>
+│ │ └── resources/ # FXML, CSS, ikoner, config m.m.</br>
+│ └── test/</br>
+│ └── java/ # Enhetstester</br>
+├── README.md # Projektbeskrivning</br>
+├── pom.xml # Maven-konfiguration</br>
+└── config.json (genereras vid körning)</br>
+</br>
+> Denna struktur gör det lätt att särskilja UI, logik, modeller och persistens, samt att bygga och testa med Maven och CI.</br>
+
+---
 
 ## 🚀 Installation & Körning
 
@@ -106,6 +148,14 @@ mvn javafx:run
 
 *Alternativt kan du köra `MainApp.java` direkt från din IDE (t.ex. IntelliJ eller Eclipse).*
 
+---
+## 🧭 Usage
+
+1. Starta applikationen och logga in som admin (standardlösenord: `admin` första gången).
+2. Skapa en ny medlem via CRM-vyn.
+3. Lägg till en ny scooter eller sled i lagret.
+4. Starta en uthyrning genom att koppla Medlem + Utrustning + Prispolicy.
+5. Avsluta uthyrningen och generera kvitto/faktura via kvittofunktionen.
 ---
 
 ## 🔐 Konfiguration & Säkerhet
