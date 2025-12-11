@@ -1,4 +1,4 @@
-# ❄️ Retro Scooter Central 🛵
+# ❄️ Scooter Central 🛵
 
 ![Java](https://img.shields.io/badge/Java-21-blue?style=for-the-badge&logo=openjdk)
 ![JavaFX](https://img.shields.io/badge/JavaFX-Enabled-orange?style=for-the-badge&logo=java)
