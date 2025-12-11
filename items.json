@@ -18,7 +18,7 @@
     "name": "Ski-Doo Summit X 850 E-TEC Turbo R 2024",
     "isAvailable": true,
     "currentRentalPrice": 350.0,
-    "rentalCount": 1,
+    "rentalCount": 2,
     "itemType": "Scooter"
   },
   {
@@ -27,7 +27,7 @@
     "hasElectricStart": true,
     "itemId": "1002",
     "name": "Polaris PRO RMK Slash 9R 2024",
-    "isAvailable": false,
+    "isAvailable": true,
     "currentRentalPrice": 320.0,
     "rentalCount": 1,
     "itemType": "Scooter"
@@ -38,7 +38,7 @@
     "hasElectricStart": true,
     "itemId": "1003",
     "name": "Lynx Boondocker RE 600R E-TEC 2023",
-    "isAvailable": false,
+    "isAvailable": true,
     "currentRentalPrice": 280.0,
     "rentalCount": 2,
     "itemType": "Scooter"
@@ -60,9 +60,9 @@
     "hasElectricStart": true,
     "itemId": "1005",
     "name": "Ski-Doo Expedition Xtreme 850 E-TEC 2024",
-    "isAvailable": true,
+    "isAvailable": false,
     "currentRentalPrice": 340.0,
-    "rentalCount": 0,
+    "rentalCount": 1,
     "itemType": "Scooter"
   },
   {
@@ -71,9 +71,9 @@
     "hasElectricStart": true,
     "itemId": "1006",
     "name": "Polaris Indy VR1 650 2024",
-    "isAvailable": true,
+    "isAvailable": false,
     "currentRentalPrice": 290.0,
-    "rentalCount": 0,
+    "rentalCount": 1,
     "itemType": "Scooter"
   },
   {
@@ -82,9 +82,9 @@
     "hasElectricStart": true,
     "itemId": "1007",
     "name": "Lynx Shredder RE 850 E-TEC Turbo R 2024",
-    "isAvailable": true,
+    "isAvailable": false,
     "currentRentalPrice": 360.0,
-    "rentalCount": 0,
+    "rentalCount": 1,
     "itemType": "Scooter"
   },
   {
@@ -93,7 +93,7 @@
     "hasElectricStart": true,
     "itemId": "1008",
     "name": "Yamaha SRViper B-TX LE 153 2023",
-    "isAvailable": false,
+    "isAvailable": true,
     "currentRentalPrice": 305.0,
     "rentalCount": 1,
     "itemType": "Scooter"
@@ -194,7 +194,7 @@
     "name": "Lynx Rave RE 600R E-TEC 2024",
     "isAvailable": true,
     "currentRentalPrice": 300.0,
-    "rentalCount": 0,
+    "rentalCount": 1,
     "itemType": "Scooter"
   },
   {
@@ -205,7 +205,7 @@
     "name": "Yamaha Transporter Lite 2024",
     "isAvailable": true,
     "currentRentalPrice": 270.0,
-    "rentalCount": 0,
+    "rentalCount": 1,
     "itemType": "Scooter"
   },
   {
@@ -293,7 +293,7 @@
     "name": "Polaris 550 Indy LXT 2023",
     "isAvailable": true,
     "currentRentalPrice": 240.0,
-    "rentalCount": 0,
+    "rentalCount": 1,
     "itemType": "Scooter"
   },
   {
@@ -313,9 +313,9 @@
     "hasElectricStart": true,
     "itemId": "1028",
     "name": "Yamaha RS Venture TF 2023",
-    "isAvailable": true,
+    "isAvailable": false,
     "currentRentalPrice": 280.0,
-    "rentalCount": 0,
+    "rentalCount": 1,
     "itemType": "Scooter"
   },
   {
@@ -335,9 +335,9 @@
     "hasElectricStart": true,
     "itemId": "1030",
     "name": "Ski-Doo Freeride 850 E-TEC Turbo R 2024",
-    "isAvailable": true,
+    "isAvailable": false,
     "currentRentalPrice": 370.0,
-    "rentalCount": 0,
+    "rentalCount": 1,
     "itemType": "Scooter"
   },
   {
@@ -348,7 +348,7 @@
     "name": "Polaris Titan Adventure 2024",
     "isAvailable": true,
     "currentRentalPrice": 330.0,
-    "rentalCount": 0,
+    "rentalCount": 2,
     "itemType": "Scooter"
   },
   {
@@ -458,7 +458,7 @@
     "name": "Polaris Switchback XC 850 2023",
     "isAvailable": true,
     "currentRentalPrice": 315.0,
-    "rentalCount": 0,
+    "rentalCount": 1,
     "itemType": "Scooter"
   },
   {
@@ -513,7 +513,7 @@
     "name": "Polaris Nordic Pro 650 2024",
     "isAvailable": true,
     "currentRentalPrice": 295.0,
-    "rentalCount": 0,
+    "rentalCount": 1,
     "itemType": "Scooter"
   },
   {
@@ -533,9 +533,9 @@
     "hasElectricStart": true,
     "itemId": "1048",
     "name": "Yamaha SRViper L-TX GT 2023",
-    "isAvailable": true,
+    "isAvailable": false,
     "currentRentalPrice": 290.0,
-    "rentalCount": 0,
+    "rentalCount": 1,
     "itemType": "Scooter"
   },
   {
@@ -544,9 +544,9 @@
     "hasElectricStart": true,
     "itemId": "1049",
     "name": "Arctic Cat ZR 8000 RR 2024",
-    "isAvailable": true,
+    "isAvailable": false,
     "currentRentalPrice": 330.0,
-    "rentalCount": 0,
+    "rentalCount": 1,
     "itemType": "Scooter"
   },
   {
@@ -644,9 +644,9 @@
     "maxWeightKg": 180,
     "itemId": "2009",
     "name": "Nila 2-sits Pulka",
-    "isAvailable": true,
+    "isAvailable": false,
     "currentRentalPrice": 130.0,
-    "rentalCount": 0,
+    "rentalCount": 1,
     "itemType": "Sled"
   },
   {
@@ -804,9 +804,9 @@
     "maxWeightKg": 180,
     "itemId": "2025",
     "name": "SledStore Cargo",
-    "isAvailable": true,
+    "isAvailable": false,
     "currentRentalPrice": 100.0,
-    "rentalCount": 0,
+    "rentalCount": 1,
     "itemType": "Sled"
   },
   {
@@ -844,9 +844,9 @@
     "maxWeightKg": 200,
     "itemId": "2029",
     "name": "Nordic Cab Explorer",
-    "isAvailable": true,
+    "isAvailable": false,
     "currentRentalPrice": 150.0,
-    "rentalCount": 0,
+    "rentalCount": 1,
     "itemType": "Sled"
   },
   {
@@ -1014,9 +1014,9 @@
     "maxWeightKg": 620,
     "itemId": "2046",
     "name": "Timmerdoning Max",
-    "isAvailable": true,
+    "isAvailable": false,
     "currentRentalPrice": 235.0,
-    "rentalCount": 0,
+    "rentalCount": 1,
     "itemType": "Sled"
   },
   {
@@ -1026,7 +1026,7 @@
     "name": "Nila Pulka Touring",
     "isAvailable": true,
     "currentRentalPrice": 155.0,
-    "rentalCount": 0,
+    "rentalCount": 1,
     "itemType": "Sled"
   },
   {

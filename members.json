@@ -5,7 +5,7 @@
     "lastName": "Bengtsson",
     "phone": "070-1234567",
     "email": "albin.bengtsson@scooterrental.se",
-    "status": "PREMIUM",
+    "status": "STUDENT",
     "rentalHistory": [
       "1001",
       "1001",
@@ -30,7 +30,10 @@
     "phone": "070-7654321",
     "email": "bengt.albinsson@scooterrental.se",
     "status": "PREMIUM",
-    "rentalHistory": []
+    "rentalHistory": [
+      "1021",
+      "1022"
+    ]
   },
   {
     "memberId": "M102",
@@ -42,7 +45,9 @@
     "rentalHistory": [
       "1001",
       "1001",
-      "1003"
+      "1003",
+      "1015",
+      "1019"
     ]
   },
   {
@@ -55,7 +60,8 @@
     "rentalHistory": [
       "1002",
       "1005",
-      "1010"
+      "1010",
+      "1013"
     ]
   },
   {
@@ -99,7 +105,9 @@
     "phone": "070-5556677",
     "email": "sven-ake.nilsson@scooterrental.se",
     "status": "STANDARD",
-    "rentalHistory": []
+    "rentalHistory": [
+      "1020"
+    ]
   },
   {
     "memberId": "M108",
@@ -230,7 +238,9 @@
     "phone": "070-8080808",
     "email": "kent-ove.forsberg@scooterrental.se",
     "status": "STANDARD",
-    "rentalHistory": []
+    "rentalHistory": [
+      "1017"
+    ]
   },
   {
     "memberId": "M120",
@@ -272,7 +282,10 @@
     "email": "bo-goran.stromberg@scooterrental.se",
     "status": "STANDARD",
     "rentalHistory": [
-      "1025"
+      "1025",
+      "1011",
+      "1012",
+      "1023"
     ]
   },
   {
@@ -285,7 +298,9 @@
     "rentalHistory": [
       "1026",
       "1027",
-      "1028"
+      "1028",
+      "1014",
+      "1018"
     ]
   },
   {
@@ -307,7 +322,8 @@
     "email": "kerstin.bergstrom@scooterrental.se",
     "status": "STANDARD",
     "rentalHistory": [
-      "1029"
+      "1029",
+      "1025"
     ]
   },
   {
@@ -319,7 +335,8 @@
     "status": "PREMIUM",
     "rentalHistory": [
       "1030",
-      "1031"
+      "1031",
+      "1027"
     ]
   },
   {
@@ -417,7 +434,8 @@
     "rentalHistory": [
       "1040",
       "1041",
-      "1042"
+      "1042",
+      "1016"
     ]
   },
   {
@@ -502,7 +520,8 @@
     "email": "susanne.ek@scooterrental.se",
     "status": "STANDARD",
     "rentalHistory": [
-      "2000"
+      "2000",
+      "1026"
     ]
   },
   {
@@ -514,7 +533,9 @@
     "status": "PREMIUM",
     "rentalHistory": [
       "2001",
-      "2002"
+      "2002",
+      "1028",
+      "1030"
     ]
   },
   {
@@ -525,7 +546,8 @@
     "email": "maria.wallin@scooterrental.se",
     "status": "STANDARD",
     "rentalHistory": [
-      "1007"
+      "1007",
+      "1024"
     ]
   },
   {
@@ -536,7 +558,8 @@
     "email": "anders.gustafsson@scooterrental.se",
     "status": "STANDARD",
     "rentalHistory": [
-      "2003"
+      "2003",
+      "1029"
     ]
   },
   {

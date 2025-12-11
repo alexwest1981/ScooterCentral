@@ -1,15 +1,32 @@
-module se.example.scooterrental {
+module se.scooterrental {
+    // JavaFX
     requires javafx.controls;
     requires javafx.fxml;
-    requires javafx.web;
+    requires javafx.graphics;
+    requires javafx.base;
 
-    requires org.controlsfx.controls;
-    requires com.dlsc.formsfx;
-    requires net.synedra.validatorfx;
+    // Gson
+    requires transitive com.google.gson;
+
+    // Ikonli
     requires org.kordamp.ikonli.javafx;
-    requires org.kordamp.bootstrapfx.core;
-    requires eu.hansolo.tilesfx;
+    requires org.kordamp.ikonli.materialdesign2;
+    requires org.kordamp.ikonli.antdesignicons;
+    requires org.kordamp.ikonli.mapicons;
+    requires org.kordamp.ikonli.maki2;
 
-    opens se.example.scooterrental to javafx.fxml;
-    exports se.example.scooterrental;
+    // Exports
+    // exports se.scooterrental;
+    exports se.scooterrental.model;
+    exports se.scooterrental.service;
+    exports se.scooterrental.persistence;
+    exports se.scooterrental.util;
+    exports se.scooterrental.ui;
+    exports se.scooterrental.ui.views;
+
+    // Opens
+    opens se.scooterrental.model to javafx.base, com.google.gson;
+    opens se.scooterrental to javafx.fxml, javafx.graphics;
+    opens se.scooterrental.ui to javafx.fxml, javafx.graphics;
+    opens se.scooterrental.ui.views to javafx.fxml, javafx.graphics;
 }

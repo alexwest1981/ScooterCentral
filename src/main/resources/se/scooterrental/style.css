@@ -1,232 +1,184 @@
-/* ===== Bas / Bakgrund ===== */
+/* ===== LJUST TEMA / DASHBOARD STYLE ===== */
+
 .root {
-    /* Ljusgrå bakgrund som i dashboard-bilden */
     -fx-base: #FFFFFF;
     -fx-background: #F3F5F7;
     -fx-background-color: -fx-background;
-    -fx-text-fill: #1A1A1A; /* Mörkgrå/Svart text */
+    -fx-text-fill: #1F2937;
     -fx-font-family: "Segoe UI", "Inter", sans-serif;
+
+    /* Ta bort blå fokus-ram */
+    -fx-focus-color: transparent;
+    -fx-faint-focus-color: transparent;
 }
 
-/* En centrerad huvudpanel (Container-stil) */
+/* Paneler & Kort */
 .center-panel, .summary-box {
     -fx-background-color: #FFFFFF;
-    -fx-background-radius: 20; /* Kraftigt rundade hörn */
-    -fx-padding: 24;
-    /* Mjuk, knappt synlig skugga */
-    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.05), 20, 0, 0, 5);
+    -fx-background-radius: 12;
+    -fx-padding: 20;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.05), 10, 0, 0, 4);
 }
 
-/* Rubriker */
+/* Typografi */
 .label {
-    -fx-text-fill: #1A1A1A;
+    -fx-text-fill: #374151;
     -fx-font-size: 13px;
-    -fx-font-weight: bold;
 }
 
-/* Logo-textstil */
 .logo {
-    -fx-font-size: 24px;
-    -fx-font-weight: bold;
-    -fx-text-fill: #1A1A1A;
-    -fx-padding: 15 0 15 25;
-    -fx-font-family: "Segoe UI", sans-serif;
-    /* Tar bort neon-effekter för en ren look */
-    -fx-effect: null;
+    -fx-font-size: 20px;
+    -fx-font-weight: 900;
+    -fx-text-fill: #111827;
+    -fx-font-family: "Segoe UI Black", "Arial Black", sans-serif;
+    -fx-letter-spacing: -0.5px;
 }
 
-/* ===== Tabs (Sidomeny) ===== */
+/* ===== SIDOMENY (VÄNSTER) ===== */
 .tab-pane {
     -fx-padding: 0;
+    -fx-background-color: transparent;
 }
 
+/* Själva sidebar-ytan */
 .tab-pane > .tab-header-area {
-    -fx-background-color: #FFFFFF; /* Vit sidebar */
-    -fx-padding: 10 0 10 0;
-    /* Skugga för att separera menyn från innehållet */
-    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.05), 10, 0, -5, 0);
+    -fx-background-color: #FFFFFF;
+    -fx-padding: 15 0 0 0;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.03), 5, 0, 2, 0);
 }
 
-/* Flikarna - Rena ikoner */
+/* Flikarna / Knapparna */
 .tab-pane > .tab-header-area > .headers-region > .tab {
     -fx-background-color: transparent;
     -fx-background-insets: 0;
     -fx-background-radius: 0;
-    -fx-padding: 20 10 20 10;
+
+    /* I Left-mode: prefHeight = bredd på knappen, prefWidth = höjd på knappen */
+    -fx-pref-height: 70;
+    -fx-pref-width: 50;
+
+    -fx-padding: 0;
     -fx-alignment: CENTER;
     -fx-cursor: hand;
-    -fx-pref-width: 80;
-    -fx-pref-height: 80;
+    -fx-border-color: transparent;
+    -fx-border-width: 0 0 0 0;
 }
 
-/* Ikon-texten */
+/* Ikoner i menyn - Roterar tillbaka dem eftersom Side.LEFT roterar dem */
 .tab .tab-label {
-    -fx-text-fill: #9CA3AF;   /* Ljusgrå inaktiv ikon */
-    -fx-font-size: 24px;
     -fx-alignment: CENTER;
-    -fx-rotate: 90; /* Behåller rotationen för din layout */
+    -fx-rotate: 0;
+    -fx-padding: 0;
 }
 
+.sidebar-icon {
+    -fx-icon-color: #9CA3AF; /* Ljusgrå inaktiv */
+}
+
+/* Hover-effekt */
 .tab:hover {
-    -fx-background-color: #F9FAFB; /* Mycket ljus grå vid hover */
+    -fx-background-color: #F9FAFB;
 }
 
-.tab:hover .tab-label {
-    -fx-text-fill: #1A1A1A;
+.tab:hover .sidebar-icon {
+    -fx-icon-color: #4B5563;
 }
 
 /* Vald flik */
 .tab:selected {
-    -fx-background-color: transparent;
-    /* En liten indikator (border) */
-    -fx-border-color: #1A1A1A;
-    -fx-border-width: 0 0 0 3; /* Svart linje */
-}
-
-.tab:selected .tab-label {
-    -fx-text-fill: #1A1A1A; /* Svart aktiv ikon */
-}
-
-/* Ikonli-ikoner - Hantering av färger */
-.sidebar-icon {
-    -fx-icon-color: #9CA3AF; /* Inaktiv färg */
-    -fx-rotate: 180;
+    -fx-background-color: #F3F4F6; /* Ljusgrå bakgrund för vald */
+    /* En markör (border) till höger om ikonen (visuellt vänster kant pga rotation) */
+    -fx-border-color: #111827;
+    -fx-border-width: 0 0 3 0; /* Ser ut som vänster kant */
 }
 
 .tab:selected .sidebar-icon {
-    -fx-icon-color: #1A1A1A; /* Aktiv färg */
+    -fx-icon-color: #111827; /* Svart aktiv */
 }
 
-/* Innehållsytan */
+/* Innehållsyta */
 .tab-content-area {
-    -fx-background-color: #F3F5F7; /* Bakgrundsfärg för huvudinnehåll */
+    -fx-background-color: #F3F5F7;
     -fx-padding: 30;
-    -fx-background-radius: 20 0 0 20;
 }
 
-/* ===== Tabell (TableView) - Card Style ===== */
+/* ===== TABELLER ===== */
 .table-view {
     -fx-background-color: #FFFFFF;
-    -fx-background-radius: 15;
+    -fx-background-radius: 8;
     -fx-border-color: transparent;
-    -fx-padding: 10;
-    /* Mjuk skugga runt hela tabellen så den ser ut som ett "kort" */
-    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.03), 15, 0, 0, 4);
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.02), 5, 0, 0, 2);
+    -fx-padding: 0;
 }
 
 .table-view .column-header-background {
-    -fx-background-color: transparent;
+    -fx-background-color: #F9FAFB; /* Ljus header bakgrund */
     -fx-border-width: 0 0 1px 0;
-    -fx-border-color: #F3F4F6;
+    -fx-border-color: #E5E7EB;
+    -fx-background-radius: 8 8 0 0;
 }
 
 .table-view .column-header {
     -fx-background-color: transparent;
     -fx-border-color: transparent;
+    -fx-padding: 10 5;
 }
 
 .table-view .column-header .label {
-    -fx-text-fill: #6B7280; /* Muted grey text för headers */
-    -fx-font-size: 12px;
+    -fx-text-fill: #6B7280;
     -fx-font-weight: bold;
+    -fx-font-size: 11px;
+    -fx-text-transform: uppercase;
 }
 
-/* Celler */
 .table-cell {
     -fx-text-fill: #1F2937;
     -fx-alignment: CENTER-LEFT;
-    -fx-padding: 10 0 10 10;
     -fx-border-color: transparent;
+    -fx-padding: 12 10;
 }
 
 .table-row-cell {
     -fx-background-color: #FFFFFF;
     -fx-border-width: 0 0 1px 0;
-    -fx-border-color: #F9FAFB; /* Mycket subtil linje */
+    -fx-border-color: #F3F4F6;
 }
 
-.table-row-cell:odd {
-    -fx-background-color: #FFFFFF; /* Ingen randig tabell för denna stil */
-}
-
-/* Markering */
-.table-view:focused .table-row-cell:selected,
 .table-row-cell:selected {
-    -fx-background-color: #F0FDF4; /* Mycket ljus grön tint */
-    -fx-background-radius: 5;
+    -fx-background-color: #F0FDF4; /* Ljusgrön markeringsfärg */
 }
 
-.table-row-cell:selected .table-cell {
-    -fx-text-fill: #166534; /* Mörkgrön text vid val */
-}
-
-.table-view .placeholder .label {
-    -fx-text-fill: #9CA3AF;
-}
-
-/* ===== Scrollbars (Minimalistiska) ===== */
-.scroll-bar:horizontal, .scroll-bar:vertical {
-    -fx-background-color: transparent;
-}
-.scroll-bar .thumb {
-    -fx-background-color: #E5E7EB;
-    -fx-background-radius: 10;
-}
-.scroll-bar .thumb:hover {
-    -fx-background-color: #D1D5DB;
-}
-
-/* ===== Summeringsbox (Dashboard Card) ===== */
-.summary-box {
-    -fx-background-color: #FFFFFF;
-    -fx-background-radius: 20;
-    -fx-border-color: transparent;
-    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.05), 15, 0, 0, 4);
-    -fx-padding: 20;
-}
-
-.summary-box .label {
-    -fx-text-fill: #111827;
-    -fx-font-size: 16px;
-}
-
-/* ===== Knappar (Pill-shape / Rounded) ===== */
+/* ===== KNAPPAR ===== */
 .button {
-    -fx-background-radius: 30; /* Pillerform */
-    -fx-border-radius: 30;
-    -fx-padding: 8 20;
+    -fx-background-radius: 6;
+    -fx-background-color: #FFFFFF;
+    -fx-text-fill: #374151;
+    -fx-border-color: #D1D5DB;
+    -fx-border-radius: 6;
+    -fx-padding: 8 16;
     -fx-font-size: 13px;
     -fx-font-weight: bold;
     -fx-cursor: hand;
-
-    /* Default: Vit knapp med grå border */
-    -fx-background-color: #FFFFFF;
-    -fx-text-fill: #374151;
-    -fx-border-color: #E5E7EB;
-    -fx-border-width: 1px;
-    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.03), 3, 0, 0, 1);
 }
 
 .button:hover {
     -fx-background-color: #F9FAFB;
-    -fx-border-color: #D1D5DB;
+    -fx-border-color: #9CA3AF;
 }
 
-/* "Create" knapp stil (Svart/Mörk) */
 .accent-button {
-    -fx-background-color: #1A1A1A; /* Svart knapp som i bilden */
+    -fx-background-color: #111827; /* Svart */
     -fx-text-fill: #FFFFFF;
     -fx-border-color: transparent;
 }
 
 .accent-button:hover {
-    -fx-background-color: #333333;
+    -fx-background-color: #1F2937;
 }
 
-/* Röd knapp (Ta bort/Avsluta) */
 .red-button {
-    -fx-background-color: #FEF2F2; /* Ljus röd bakgrund */
-    -fx-text-fill: #EF4444;
+    -fx-background-color: #FEF2F2;
+    -fx-text-fill: #DC2626;
     -fx-border-color: transparent;
 }
 
@@ -234,32 +186,30 @@
     -fx-background-color: #FEE2E2;
 }
 
-/* ===== Dialoger & Inputs ===== */
+/* ===== INPUTS & DIALOG ===== */
+.text-field, .combo-box {
+    -fx-background-color: #FFFFFF;
+    -fx-border-color: #E5E7EB;
+    -fx-border-radius: 6;
+    -fx-background-radius: 6;
+    -fx-text-fill: #111827;
+    -fx-padding: 7;
+}
+
+.text-field:focused {
+    -fx-border-color: #111827;
+}
+
 .dialog-pane {
     -fx-background-color: #FFFFFF;
-    -fx-background-radius: 15;
-    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 20, 0, 0, 10);
+    -fx-font-family: "Segoe UI", sans-serif;
 }
 
 .dialog-pane .header-panel {
     -fx-background-color: #FFFFFF;
-    -fx-background-radius: 15 15 0 0;
+    -fx-padding: 20 20 0 20;
 }
 
-.dialog-pane .label {
-    -fx-text-fill: #111827;
-}
-
-.text-field, .combo-box {
-    -fx-background-color: #F9FAFB;
-    -fx-background-radius: 8;
-    -fx-border-color: #E5E7EB;
-    -fx-border-radius: 8;
-    -fx-text-fill: #111827;
-    -fx-padding: 8;
-}
-
-.text-field:focused, .combo-box:focused {
-    -fx-background-color: #FFFFFF;
-    -fx-border-color: #1A1A1A; /* Svart fokus-border */
+.dialog-pane .content {
+    -fx-padding: 20;
 }

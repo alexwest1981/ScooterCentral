@@ -1,158 +1,197 @@
-package se.scooterrental.persistence;
+package se.scooterrental.service;
 
 import se.scooterrental.model.Item;
 import se.scooterrental.model.Member;
 import se.scooterrental.model.Rental;
 import se.scooterrental.model.PricePolicy;
-import se.scooterrental.model.StandardPricePolicy; // Standardpolicy
 import se.scooterrental.persistence.DataHandler;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
-import java.util.stream.Collectors;
 import java.util.concurrent.atomic.AtomicLong;
+import java.util.stream.Collectors;
 
-/**
- * Hanterar affärslogik relaterad till uthyrningar (Boka, Avsluta, Summeringar).
- * Behöver MemberRegistry och Inventory för att fungera.
- */
 public class RentalService {
-    private List<Rental> activeAndFinishedRentals;
-    private final MemberRegistry memberRegistry;
-    private final Inventory inventory;
+    private MemberRegistry memberRegistry;
+    private Inventory inventory;
+    private List<Rental> rentals;
+    private AtomicLong nextId;
 
-    public RentalService(¨MemberRegistry memberRegistry, Inventory inventory) {
-        // Läser in alla rentals vid start
-        this.activeAndFinishedRentals = DataHandler.loadRentals();
+    private static final DateTimeFormatter DATE_FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+    private static final DateTimeFormatter OLD_DATE_FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+
+    public RentalService(MemberRegistry memberRegistry, Inventory inventory) {
         this.memberRegistry = memberRegistry;
         this.inventory = inventory;
-        // Säkerställer att ID_COUNTER för Rental är uppdaterad efter inläsning
-        updateRentalIdCounter();
+        this.rentals = DataHandler.loadRentals();
+        if (this.rentals == null) {
+            this.rentals = new java.util.ArrayList<>();
+        }
+        initializeNextId();
     }
 
-    /**
-     * Uppdatera ID-räknaren i Rental-klassen till högsta befintliga ID.
-     */
-    private void updateRentalIdCounter() {}
+    private void initializeNextId() {
+        long maxId = rentals.stream()
+                .map(Rental::getId)
+                .filter(id -> id != null && id.matches("\\d+"))
+                .mapToLong(Long::parseLong)
+                .max()
+                .orElse(1000L);
+        this.nextId = new AtomicLong(maxId + 1);
+    }
 
-    /**
-     * Bokar en ny uthyrning.
-     * @param memberId Medlems-ID.
-     * @param itemId Item-ID.
-     * @param policy Den prispolicy som ska användas.
-     * @return Den nya Rental-instansen, eller Optional.empty() vid fel.
-     */
-    public Optional<Rental> startRental(String memberId, String itemId, PricePolicy pricePolicy) {
+    private String generateId() {
+        return String.valueOf(nextId.getAndIncrement());
+    }
+
+    public boolean rentItem(String memberId, String itemId, PricePolicy policy) {
         Optional<Member> memberOpt = memberRegistry.findMemberById(memberId);
         Optional<Item> itemOpt = inventory.findItemById(itemId);
 
-        if (memberOpt.isEmpty()) {
-            System.err.println("FEL: Medlem med ID " + memberId + "hittades inte.");
-            return Optional.empty();
+        if (memberOpt.isPresent() && itemOpt.isPresent()) {
+            Item item = itemOpt.get();
+            Member member = memberOpt.get();
+
+            if (item.isAvailable()) {
+                Rental rental = new Rental(generateId(), memberId, itemId, policy);
+                rentals.add(rental);
+
+                item.setAvailable(false);
+                item.incrementRentalCount();
+                inventory.updateItem(item);
+
+                member.addRentalToHistory(rental.getId());
+                memberRegistry.updateMember(member);
+
+                return saveData();
+            }
         }
-
-        if (itemOpt.isEmpty() || !itemOpt.get().isAvailable()) {
-            System.err.println("FEL: Item med ID " + itemId + "hittades inte eller är inte tillgänglig.");
-            return Optional.empty();
-        }
-
-        Item item = itemOpt.get();
-
-        // Skapa uthyrningen
-        Rental newRental = new Rental(memberId, itemId, policy);
-        activeAndFinishedRentals.add(newRental);
-
-        // Uppdatera inventory
-        item.setIsAvailable(false);
-        inventory.updateItem(item);
-
-        // Uppdatera member history
-        memberOpt.get().addRentalToHistory(String.valueOf(newRental.getRentalId()));
-
-        return Optional.of(newRental);
+        return false;
     }
 
-    /**
-     * Avslutar en pågående uthyrning.
-     * @param rentalId ID för uthyrningen som ska avslutas.
-     * @return Optional som innehåller slutpriset, eller Optional.empty() vid fel.
-     */
-    public Optional<Double> endRental(long rentalId) {
-        Optional<Rental> rentalOpt = activeAndFinishedRentals.stream()
-                .filter(r -> r.getRentalId() == rentalId)
-                .filter(r -> r.getEndTime() == null) // Måste vara en aktiv uthyrning
+    public boolean rentItem(String memberId, String itemId) {
+        return rentItem(memberId, itemId, null);
+    }
+
+    public Optional<Double> endRental(String rentalId) {
+        Optional<Rental> rentalOpt = rentals.stream()
+                .filter(r -> r.getId() != null && r.getId().equals(rentalId) && r.isActive())
                 .findFirst();
 
-        if (rentalOpt.isEmpty()) {
-            System.err.println("FEL: Aktiv uthyrning med ID " + rentalId + " hittades inte.");
-            return Optional.empty();
-        }
+        if (rentalOpt.isPresent()) {
+            Rental rental = rentalOpt.get();
+            Optional<Item> itemOpt = inventory.findItemById(rental.getItemId());
 
-        Rental rental = rentalOpt.get();
+            double finalPrice = 0.0;
+            if (itemOpt.isPresent()) {
+                finalPrice = rental.getCurrentCost(itemOpt.get().getCurrentRentalPrice());
+            }
 
-        // Hämta Item för att få baspriset
-        Optional<Item> itemOpt = inventory.findItemById(rental.getItemId());
-        if (itemOpt.isEmpty()) {
-            System.err.println("VARNING: Uthyrd Item saknas i Inventory. Kan inte beräkna pris.");
-            return Optional.empty();
-        }
+            rental.endRental(finalPrice);
 
-        Item item = itemOpt.get();
-        double basePrice = item.getCurrentRentalPrice();
+            if (itemOpt.isPresent()) {
+                Item item = itemOpt.get();
+                item.setAvailable(true);
+                inventory.updateItem(item);
+            }
 
-        try {
-            // 1. Avsluta uthyrningen och beräkna pris
-            double finalPrice = rental.endRental(basePrice);
-
-            // 2. Uppdatera Inventory (sätt Item till tillgänglig)
-            item.setAvailable(true);
-            inventory.updateItem(item);
-
-            // 3. Data är nu uppdaterad i både Rental-listan och Inventory
+            saveData();
             return Optional.of(finalPrice);
-
-        } catch (IllegalStateException e) {
-            System.err.println("FEL: Uthyrning kunde inte avslutas: " + e.getMessage());
-            return Optional.empty();
         }
+        return Optional.empty();
     }
 
-    /**
-     * Returnerar en lista med alla aktiva uthyrningar.
-     * @return Lista med aktiva Rental-objekt.
-     */
     public List<Rental> getActiveRentals() {
-        return activeAndFinishedRentals.stream()
-                .filter(r -> r.getEndTime() == null)
+        return rentals.stream()
+                .filter(r -> r.getId() != null && r.isActive())
                 .collect(Collectors.toList());
     }
 
-    /**
-     * Beräknar den totala intäkten från avslutade uthyrningar (Summeringar G-krav).
-     * @return Den totala intäkten som double.
-     */
+    // NY METOD: Hämtar all historik (inklusive avslutade)
+    public List<Rental> getRentalsHistory() {
+        return new ArrayList<>(rentals);
+    }
+
+    public List<Rental> getRentalsForMember(String memberId) {
+        return rentals.stream()
+                .filter(r -> r.getMemberId().equals(memberId))
+                .collect(Collectors.toList());
+    }
+
     public double getTotalRevenue() {
-        return activeAndFinishedRentals.stream()
-                .filter(r -> r.getEndTime() != null)
-                .mapToDouble(Rental::getFinalPrice)
+        return rentals.stream()
+                .filter(r -> !r.isActive())
+                .mapToDouble(Rental::getTotalCost)
                 .sum();
     }
 
-    /**
-     * Returnerar en oföränderlig vy av alla uthyrningar.
-     * @return Lista med alla Rental-objekt.
-     */
-    public List<Rental> getAllRentals() {
-        return Collections.unmodifiableList(activeAndFinishedRentals);
+    public Map<LocalDate, Double> getRevenueData(String period) {
+        LocalDate now = LocalDate.now();
+        LocalDate startDate;
+
+        switch (period) {
+            case "1 Vecka": startDate = now.minusWeeks(1); break;
+            case "1 Månad": startDate = now.minusMonths(1); break;
+            case "1 År":    startDate = now.minusYears(1); break;
+            case "1 Dag":   startDate = now; break;
+            default:        startDate = now.minusWeeks(1); break;
+        }
+
+        Map<LocalDate, Double> revenueMap = new HashMap<>();
+
+        if (period.equals("1 Dag")) {
+            revenueMap.put(now, 0.0);
+        } else {
+            for (LocalDate date = startDate; !date.isAfter(now); date = date.plusDays(1)) {
+                revenueMap.put(date, 0.0);
+            }
+        }
+
+        List<Rental> completedRentals = rentals.stream()
+                .filter(r -> !r.isActive() && r.getId() != null)
+                .collect(Collectors.toList());
+
+        for (Rental r : completedRentals) {
+            LocalDateTime rentalDate = parseDateTime(r.getStartTime());
+
+            if (rentalDate != null) {
+                LocalDate dateKey = rentalDate.toLocalDate();
+
+                if ((dateKey.isEqual(startDate) || dateKey.isAfter(startDate)) &&
+                        (dateKey.isEqual(now) || dateKey.isBefore(now))) {
+
+                    revenueMap.merge(dateKey, r.getTotalCost(), Double::sum);
+                }
+            }
+        }
+        return revenueMap;
     }
 
-    /**
-     * Sparar uthyrningshistoriken till fil.
-     * @return true om sparning lyckades.
-     */
+    public LocalDateTime parseDateTime(String timeStr) {
+        if (timeStr == null) return null;
+        try {
+            return LocalDateTime.parse(timeStr, DATE_FORMATTER);
+        } catch (Exception e) {
+            try {
+                return LocalDateTime.parse(timeStr, OLD_DATE_FORMATTER);
+            } catch (Exception ex) {
+                return null;
+            }
+        }
+    }
+
+    public Optional<Member> getMemberById(String memberId) {
+        return memberRegistry.findMemberById(memberId);
+    }
+
     public boolean saveData() {
-        return DataHandler.saveRentals(activeAndFinishedRentals);
+        return DataHandler.saveRentals(rentals);
     }
 }
