@@ -1,15 +1,15 @@
-# ❄️ Retro Scooter Central 🛵
+# ❄️ Scooter Central 🛵
 
 ![Java](https://img.shields.io/badge/Java-21-blue?style=for-the-badge&logo=openjdk)
 ![JavaFX](https://img.shields.io/badge/JavaFX-Enabled-orange?style=for-the-badge&logo=java)
 ![Maven](https://img.shields.io/badge/Maven-Build_Success-brightgreen?style=for-the-badge&logo=apachemaven)
 ![License](https://img.shields.io/badge/License-Educational-lightgrey?style=for-the-badge)
 ![Platform](https://img.shields.io/badge/Platform-Desktop-lightblue?style=for-the-badge&logo=windows)
-![Build](https://github.com/ditt-anvandarnamn/retro-scooter-central/actions/workflows/maven.yml/badge.svg)
+[![Maven Build](https://github.com/alexwest1981/ScooterCentral/actions/workflows/maven.yml/badge.svg)](https://github.com/alexwest1981/ScooterCentral/actions/workflows/maven.yml)
 
 ---
 
-**Retro Scooter Central** är ett robust, **JavaFX-baserat administrationssystem** för uthyrning av snöskotrar och tillbehör.  
+**Scooter Central** är ett robust, **JavaFX-baserat administrationssystem** för uthyrning av snöskotrar och tillbehör.  
 Applikationen hanterar hela flödet i en uthyrningsverksamhet – från lagerhantering och medlemsregister till aktiv uthyrning, prissättning och kvittohantering.
 
 ---
@@ -90,8 +90,8 @@ Persistence --> JSON[JSON Files]</br>
 
 **Kloning**
 
-git clone https://github.com/ditt-anvandarnamn/retro-scooter-central.git
-cd retro-scooter-central
+git clone https://github.com/alexwest81/ScooterCentral.git
+cd ScooterCentral
 
 
 **Bygg projektet**
