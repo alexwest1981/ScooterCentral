@@ -50,6 +50,13 @@ _Realtidsvy med taxameter, nyckeltal och grafer._
 _Hantera utrustning, medlemmar och pågående uthyrningar._
 ![Rental screenshot](docs/images/equipment.png)
 
+### Dashboard Dark
+_Realtidsvy med taxameter, nyckeltal och grafer._
+![Dashboard screenshot](docs/images/dashboard_dark.png)
+
+### Kassa
+_Hantering av uthyrd utrustning._
+![Rental screenshot](docs/images/rentals.png)
 ---
 
 ## ✨ Funktioner
@@ -183,7 +190,7 @@ Lösenord matas in via ett maskerat `PasswordField` i `LoginView`.
 - `.scorecard-title`, `.scorecard-value`, `.section-header`, `.settings-section` – konsekvent styling.  
 - `.tab-content-area` – anpassad bakgrund i mörkt läge.  
 
-Hardkodade färger i t.ex. `DashboardView` är ersatta av CSS‑klasser för att stödja både ljust och mörkt tema.
+Hårdkodade färger i t.ex. `DashboardView` är ersatta av CSS‑klasser för att stödja både ljust och mörkt tema.
 
 ---
 
