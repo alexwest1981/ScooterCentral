@@ -50,6 +50,13 @@ _Realtidsvy med taxameter, nyckeltal och grafer._
 _Hantera utrustning, medlemmar och pågående uthyrningar._
 ![Rental screenshot](docs/images/equipment.png)
 
+### Dashboard Dark
+_Realtidsvy med taxameter, nyckeltal och grafer._
+![Dashboard screenshot](docs/images/dashboard_dark.png)
+
+### Kassa
+_Hantering av uthyrd utrustning._
+![Rental screenshot](docs/images/rentals.png)
 ---
 
 ## ✨ Funktioner
