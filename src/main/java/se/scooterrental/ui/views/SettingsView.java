@@ -89,8 +89,8 @@ public class SettingsView extends BaseView {
         aboutBox.getChildren().addAll(
                 new Label("Retro Scooter Central"),
                 new Label("Version: " + appVersion),
-                new Label("Utvecklad av: [Ditt Namn]"),
-                new Label("Support: support@scootercentral.se")
+                new Label("Utvecklad av: Alex Weström"),
+                new Label("Support: alexwestrom81@gmail.com")
         );
 
 
