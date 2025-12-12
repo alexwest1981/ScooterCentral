@@ -11,6 +11,8 @@ import javafx.print.PrinterJob;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
@@ -28,6 +30,7 @@ import se.scooterrental.service.Inventory;
 import se.scooterrental.service.MemberRegistry;
 import se.scooterrental.service.RentalService;
 
+import java.io.InputStream;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -145,6 +148,31 @@ public class RentalView extends BaseView {
         });
     }
 
+    /**
+     * Hjälpmetod för att hämta logotypen som en ImageView.
+     * @param width Önskad bredd på logotypen.
+     * @return En ImageView med logotypen, eller en Label om bilden inte hittas.
+     */
+    private javafx.scene.Node getLogoHeader(double width) {
+        try {
+            InputStream is = getClass().getResourceAsStream("/logo.png");
+            if (is != null) {
+                Image img = new Image(is);
+                ImageView logoView = new ImageView(img);
+                logoView.setFitWidth(width);
+                logoView.setPreserveRatio(true);
+                return logoView;
+            }
+        } catch (Exception e) {
+            // Ignorera och använd text-fallback
+        }
+
+        // Fallback: Textbaserad logotyp
+        Label logo = new Label("SCOOTER CENTRAL");
+        logo.setFont(Font.font("Courier New", FontWeight.BOLD, 18));
+        return logo;
+    }
+
     // --- KVITTO ---
     private void generateReceipt(Rental rental, Item item, double price) {
         Stage stage = new Stage();
@@ -156,11 +184,11 @@ public class RentalView extends BaseView {
         slip.setAlignment(Pos.TOP_CENTER);
         slip.setStyle("-fx-background-color: white; -fx-border-color: #ddd; -fx-border-width: 1;");
 
-        Label logo = new Label("SCOOTER CENTRAL");
-        logo.setFont(Font.font("Courier New", FontWeight.BOLD, 18));
+        // Hämta logotyp (maxbredd 150px för kvitto)
+        javafx.scene.Node headerNode = getLogoHeader(150);
 
         slip.getChildren().addAll(
-                logo,
+                headerNode,
                 new Separator(),
                 new Text("Datum: " + LocalDate.now()),
                 new Text("Tid: " + LocalDateTime.now().toLocalTime().toString().substring(0, 5)),
@@ -198,12 +226,29 @@ public class RentalView extends BaseView {
 
         // Header
         HBox header = new HBox();
-        VBox companyInfo = new VBox(2,
-                new Label("Scooter Central AB") {{ setFont(Font.font("Arial", FontWeight.BOLD, 20)); }},
+
+        // Hämta logotyp (maxbredd 200px för faktura)
+        javafx.scene.Node logoNode = getLogoHeader(200);
+
+        // Företagsinfo bredvid eller under loggan beroende på design
+        // Här lägger vi loggan i en VBox tillsammans med företagsnamnet
+        VBox companyInfo = new VBox(5);
+        companyInfo.getChildren().add(logoNode); // Lägg till logotypen överst
+
+        // Om logotypen är en bild, kanske vi inte vill ha texten "Scooter Central AB" i stor stil precis under
+        // så vi justerar typsnittet lite.
+        if (logoNode instanceof ImageView) {
+            companyInfo.getChildren().add(new Label("Scooter Central AB") {{ setFont(Font.font("Arial", FontWeight.BOLD, 14)); }});
+        } else {
+            // Om fallback-text används, är den redan där.
+        }
+
+        companyInfo.getChildren().addAll(
                 new Text("Strandgatan 1"),
                 new Text("621 55 Visby"),
                 new Text("Org.nr: 556000-0000")
         );
+
         VBox invoiceMeta = new VBox(2,
                 new Label("FAKTURA") {{ setFont(Font.font("Arial", FontWeight.BOLD, 24)); }},
                 new Text("Fakturanr: " + rental.getRentalId()),
@@ -329,9 +374,6 @@ public class RentalView extends BaseView {
         });
     }
 
-    // showStartRentalDialog är oförändrad, kopiera in den från tidigare om du behöver
-    // För att spara tecken i svaret utesluter jag den om du inte ber om den, då den är lång och oförändrad.
-    // Men den måste finnas här för att kompilera!
     private void showStartRentalDialog() {
         Dialog<Rental> dialog = new Dialog<>();
         dialog.setTitle("Starta Ny Uthyrning");

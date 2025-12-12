@@ -4,79 +4,129 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonObject;
 
+import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.Paths;
 
 /**
- * Hanterar applikationskonfiguration, exempelvis admin-lösenord.
- * Läser från config.json.
- * * UPPDATERAD: Använder JsonObject direkt för att undvika problem med Java Module System
- * och InaccessibleObjectException vid reflection.
+ * Hanterar applikationskonfiguration.
+ * UPPDATERAD: Stöd för Dark Mode och Admin Password.
  */
 public class ConfigHandler {
 
-    private static final String CONFIG_FILE = "config.json";
-    private static final Gson GSON = new GsonBuilder().setPrettyPrinting().create();
-    private static String cachedAdminPassword; // Vi sparar bara lösenordet direkt som sträng
+    private static final String CONFIG_DIR = "config";
+    private static final String CONFIG_FILENAME = "config.json";
+    private static final String CONFIG_PATH = CONFIG_DIR + File.separator + CONFIG_FILENAME;
 
-    /**
-     * Verifierar om det angivna lösenordet stämmer med konfigurationen.
-     * @param inputPassword Lösenordet som användaren matat in.
-     * @return true om det matchar, annars false.
-     */
+    private static final Gson GSON = new GsonBuilder().setPrettyPrinting().create();
+
+    // Cachade värden
+    private static String cachedAdminPassword = "admin";
+    private static boolean cachedDarkMode = false; // Standard: Ljust läge
+
     public static boolean verifyAdminPassword(String inputPassword) {
         ensureConfigLoaded();
         return cachedAdminPassword != null && cachedAdminPassword.equals(inputPassword);
     }
 
-    /**
-     * Laddar konfigurationen. Om filen saknas skapas en ny med standardvärden.
-     */
-    private static void ensureConfigLoaded() {
-        if (cachedAdminPassword != null) return; // Redan laddad
+    public static boolean setAdminPassword(String newPassword) {
+        if (newPassword == null || newPassword.trim().isEmpty()) return false;
+        ensureConfigLoaded();
+        cachedAdminPassword = newPassword;
+        return saveConfig();
+    }
 
-        Path path = Path.of(CONFIG_FILE);
-        if (!Files.exists(path)) {
-            createDefaultConfig();
-        }
+    // --- NYA METODER FÖR DARK MODE ---
 
-        try (FileReader reader = new FileReader(CONFIG_FILE)) {
-            // Vi läser in som ett generellt JsonObject istället för en specifik klass
-            // Detta undviker reflection-problem med moduler.
-            JsonObject json = GSON.fromJson(reader, JsonObject.class);
+    public static boolean isDarkMode() {
+        ensureConfigLoaded();
+        return cachedDarkMode;
+    }
 
-            if (json != null && json.has("adminPassword")) {
-                cachedAdminPassword = json.get("adminPassword").getAsString();
-            } else {
-                // Fallback om fältet saknas i filen
-                cachedAdminPassword = "admin";
-            }
-
-        } catch (IOException e) {
-            System.err.println("FEL: Kunde inte läsa konfigurationsfilen: " + e.getMessage());
-            cachedAdminPassword = "admin"; // Säkerhetsfallback
+    public static void setDarkMode(boolean enabled) {
+        ensureConfigLoaded();
+        if (cachedDarkMode != enabled) {
+            cachedDarkMode = enabled;
+            saveConfig();
         }
     }
 
-    /**
-     * Skapar en standard config.json om den saknas.
-     */
-    private static void createDefaultConfig() {
-        try (FileWriter writer = new FileWriter(CONFIG_FILE)) {
-            // Skapa JSON manuellt med JsonObject
-            JsonObject json = new JsonObject();
-            json.addProperty("adminPassword", "admin");
+    // ---------------------------------
 
-            GSON.toJson(json, writer);
-            System.out.println("INFO: Skapade ny config.json med standardlösenord.");
+    private static void ensureConfigLoaded() {
+        // Enkel kontroll: Vi antar att om vi har ett lösenord är config laddad.
+        // För mer robusthet kan vi ha en boolean isLoaded.
+        // Här kör vi reload om vi bara har defaults, eller litar på statiska variabler.
+        // För enkelhetens skull i detta scope: Vi laddar alltid om filen inte lästs (vilket vi gör vid start).
+        // Men för att undvika onödig I/O varje anrop kan vi använda en flagga.
+        // Här gör vi det enkelt: Läs filen om adminPassword är default "admin" (riskabelt om man bytt till "admin")
+        // eller använd en specifik init-metod.
+        // Bäst här: Försök läsa filen.
 
-            // Sätt cachen direkt också
-            cachedAdminPassword = "admin";
+        File file = new File(CONFIG_PATH);
+        if (!file.exists()) {
+            createDefaultConfig();
+            return;
+        }
+
+        // Vi läser bara in om vi inte gjort det tidigare.
+        // I en riktig app skulle vi ha en "initialized" flagga.
+        // Här litar vi på att cachedAdminPassword är satt vid start.
+        // Men för att `isDarkMode` ska funka direkt läser vi filen nu.
+
+        try (FileReader reader = new FileReader(CONFIG_PATH)) {
+            JsonObject json = GSON.fromJson(reader, JsonObject.class);
+
+            if (json != null) {
+                if (json.has("adminPassword")) {
+                    cachedAdminPassword = json.get("adminPassword").getAsString();
+                }
+                if (json.has("darkMode")) {
+                    cachedDarkMode = json.get("darkMode").getAsBoolean();
+                }
+            }
         } catch (IOException e) {
-            System.err.println("FEL: Kunde inte skapa standardkonfiguration: " + e.getMessage());
+            System.err.println("FEL: Kunde inte läsa config: " + e.getMessage());
+        }
+    }
+
+    private static void createDefaultConfig() {
+        try {
+            Path dirPath = Paths.get(CONFIG_DIR);
+            if (!Files.exists(dirPath)) Files.createDirectories(dirPath);
+
+            try (FileWriter writer = new FileWriter(CONFIG_PATH)) {
+                JsonObject json = new JsonObject();
+                json.addProperty("adminPassword", cachedAdminPassword);
+                json.addProperty("darkMode", cachedDarkMode);
+
+                GSON.toJson(json, writer);
+            }
+        } catch (IOException e) {
+            System.err.println("FEL: Kunde inte skapa config: " + e.getMessage());
+        }
+    }
+
+    private static boolean saveConfig() {
+        try {
+            Path dirPath = Paths.get(CONFIG_DIR);
+            if (!Files.exists(dirPath)) Files.createDirectories(dirPath);
+
+            try (FileWriter writer = new FileWriter(CONFIG_PATH)) {
+                JsonObject json = new JsonObject();
+                json.addProperty("adminPassword", cachedAdminPassword);
+                json.addProperty("darkMode", cachedDarkMode);
+
+                GSON.toJson(json, writer);
+                return true;
+            }
+        } catch (IOException e) {
+            System.err.println("FEL: Kunde inte spara config: " + e.getMessage());
+            return false;
         }
     }
 }

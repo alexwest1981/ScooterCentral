@@ -10,31 +10,33 @@ import javafx.geometry.Pos;
 import javafx.geometry.Side;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Priority;
 import javafx.scene.layout.Region;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import org.kordamp.ikonli.javafx.FontIcon;
 import se.scooterrental.model.Member;
+import se.scooterrental.persistence.ConfigHandler; // Importera ConfigHandler
 import se.scooterrental.persistence.DataHandler;
 import se.scooterrental.service.Inventory;
 import se.scooterrental.service.MemberRegistry;
 import se.scooterrental.service.MembershipService;
 import se.scooterrental.service.RentalService;
-import se.scooterrental.ui.views.DashboardView;
-import se.scooterrental.ui.views.ItemView;
-import se.scooterrental.ui.views.LoginView;
-import se.scooterrental.ui.views.MemberView;
-import se.scooterrental.ui.views.RentalView;
+import se.scooterrental.ui.views.*;
 import se.scooterrental.util.AutosaveThread;
 
+import java.io.InputStream;
 import java.net.URL;
 
 public class MainApp extends Application {
 
     private Stage primaryStage;
     private BorderPane mainLayout;
+    private Scene mainScene; // Håller referens för att byta tema
 
     private MemberRegistry memberRegistry;
     private Inventory inventory;
@@ -109,8 +111,9 @@ public class MainApp extends Application {
 
         TabPane tabPane = new TabPane();
         tabPane.setSide(Side.LEFT);
+        tabPane.setTabClosingPolicy(TabPane.TabClosingPolicy.UNAVAILABLE);
 
-        // 1. Dashboard - Skickar nu med memberRegistry!
+        // 1. Dashboard
         DashboardView dashboardView = new DashboardView(rentalService, inventory, memberRegistry);
         Tab dashTab = dashboardView.getTab();
         configureTab(dashTab, "antf-dashboard", "Översikt");
@@ -135,6 +138,14 @@ public class MainApp extends Application {
             configureTab(rentalsTab, "antf-shopping", "Kassa & Bokning");
 
             tabPane.getTabs().addAll(membersTab, rentalsTab);
+
+            // Inställningar
+            SettingsView settingsView = new SettingsView(this::toggleTheme);
+            Tab settingsTab = settingsView.getTab();
+            configureTab(settingsTab, "antf-setting", "Inställningar");
+
+            tabPane.getTabs().add(settingsTab);
+
         } else {
             tabPane.getTabs().add(itemsTab);
         }
@@ -142,15 +153,31 @@ public class MainApp extends Application {
         mainLayout = new BorderPane();
 
         // --- HEADER ---
-        FontIcon logoIcon = new FontIcon("maki2-snowmobile-15");
-        logoIcon.setIconSize(24);
-        logoIcon.setIconColor(javafx.scene.paint.Color.web("#111827"));
+        HBox logoContainer = new HBox(10);
+        logoContainer.setAlignment(Pos.CENTER_LEFT);
+
+        try {
+            InputStream is = getClass().getResourceAsStream("/MenuLogo.png");
+            if (is != null) {
+                Image img = new Image(is);
+                ImageView logoView = new ImageView(img);
+                logoView.setFitHeight(62);
+                logoView.setPreserveRatio(true);
+                logoContainer.getChildren().add(logoView);
+            } else {
+                FontIcon logoIcon = new FontIcon("maki2-snowmobile-15");
+                logoIcon.setIconSize(24);
+                logoIcon.setIconColor(javafx.scene.paint.Color.web("#111827"));
+                logoContainer.getChildren().add(logoIcon);
+            }
+        } catch (Exception e) { }
 
         Label logoLabel = new Label("SCOOTER CENTRAL");
         logoLabel.getStyleClass().add("logo");
+        logoContainer.getChildren().add(logoLabel);
 
         Region spacer = new Region();
-        HBox.setHgrow(spacer, javafx.scene.layout.Priority.ALWAYS);
+        HBox.setHgrow(spacer, Priority.ALWAYS);
 
         FontIcon autosaveIcon = new FontIcon("mdi2c-cloud-check");
         autosaveIcon.setIconSize(18);
@@ -163,9 +190,9 @@ public class MainApp extends Application {
         autosaveIndicator.setPadding(new Insets(0, 15, 0, 0));
         autosaveIndicator.setOpacity(0);
 
-        HBox topBar = new HBox(15, logoIcon, logoLabel, spacer, autosaveIndicator);
+        HBox topBar = new HBox(15, logoContainer, spacer, autosaveIndicator);
         topBar.setAlignment(Pos.CENTER_LEFT);
-        topBar.setStyle("-fx-background-color: #FFFFFF; -fx-padding: 15 25; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.05), 10, 0, 0, 2);");
+        topBar.getStyleClass().add("top-bar");
 
         Button logoutBtn = new Button("Logga ut");
         logoutBtn.setOnAction(e -> showLoginScreen());
@@ -176,11 +203,29 @@ public class MainApp extends Application {
         mainLayout.setTop(topBar);
         mainLayout.setCenter(tabPane);
 
-        Scene scene = new Scene(mainLayout, 1100, 750);
-        applyStyles(scene);
+        mainScene = new Scene(mainLayout, 1100, 750);
+        applyStyles(mainScene);
 
-        primaryStage.setScene(scene);
+        // FIX: Applicera mörkt tema om det är aktiverat i config
+        if (ConfigHandler.isDarkMode()) {
+            toggleTheme(true);
+        }
+
+        primaryStage.setScene(mainScene);
         primaryStage.centerOnScreen();
+    }
+
+    private void toggleTheme(boolean isDark) {
+        if (mainScene == null) return;
+
+        // Riktig implementation av Dark Mode via CSS-klass
+        if (isDark) {
+            if (!mainScene.getRoot().getStyleClass().contains("dark-mode")) {
+                mainScene.getRoot().getStyleClass().add("dark-mode");
+            }
+        } else {
+            mainScene.getRoot().getStyleClass().remove("dark-mode");
+        }
     }
 
     private void configureTab(Tab tab, String iconCode, String tooltip) {

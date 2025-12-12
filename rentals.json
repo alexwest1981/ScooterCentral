@@ -280,8 +280,9 @@
     "memberId": "M102",
     "itemId": "2009",
     "startTime": "2025-12-08 16:10:48",
-    "isActive": true,
-    "totalCost": 0.0
+    "endTime": "2025-12-12 12:20:00",
+    "isActive": false,
+    "totalCost": 11979.933333333334
   },
   {
     "id": "1020",
@@ -291,8 +292,9 @@
       "policyType": "Standard"
     },
     "startTime": "2025-12-09 10:33:22",
-    "isActive": true,
-    "totalCost": 0.0
+    "endTime": "2025-12-12 11:03:14",
+    "isActive": false,
+    "totalCost": 24649.244444444448
   },
   {
     "id": "1021",
@@ -314,8 +316,9 @@
       "policyType": "Standard"
     },
     "startTime": "2025-12-09 10:33:42",
-    "isActive": true,
-    "totalCost": 0.0
+    "endTime": "2025-12-12 11:15:34",
+    "isActive": false,
+    "totalCost": 26171.199999999997
   },
   {
     "id": "1023",
@@ -325,8 +328,9 @@
       "policyType": "Standard"
     },
     "startTime": "2025-12-09 10:33:54",
-    "isActive": true,
-    "totalCost": 0.0
+    "endTime": "2025-12-12 12:20:19",
+    "isActive": false,
+    "totalCost": 21394.347222222223
   },
   {
     "id": "1024",
@@ -347,8 +351,9 @@
       "policyType": "Standard"
     },
     "startTime": "2025-12-09 10:34:13",
-    "isActive": true,
-    "totalCost": 0.0
+    "endTime": "2025-12-12 11:15:41",
+    "isActive": false,
+    "totalCost": 20353.51111111111
   },
   {
     "id": "1026",
@@ -369,8 +374,9 @@
       "policyType": "Standard"
     },
     "startTime": "2025-12-09 10:36:00",
-    "isActive": true,
-    "totalCost": 0.0
+    "endTime": "2025-12-12 11:03:21",
+    "isActive": false,
+    "totalCost": 23910.425
   },
   {
     "id": "1028",

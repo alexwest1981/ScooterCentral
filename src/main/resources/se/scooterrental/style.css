@@ -13,7 +13,8 @@
 }
 
 /* Paneler & Kort */
-.center-panel, .summary-box {
+/* NYTT: Lade till .settings-section här för ljust tema */
+.center-panel, .summary-box, .settings-section {
     -fx-background-color: #FFFFFF;
     -fx-background-radius: 12;
     -fx-padding: 20;
@@ -100,6 +101,13 @@
 .tab-content-area {
     -fx-background-color: #F3F5F7;
     -fx-padding: 30;
+}
+
+/* ===== TOP BAR (Flyttad från Java till CSS) ===== */
+.top-bar {
+    -fx-background-color: #FFFFFF;
+    -fx-padding: 15 25;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.05), 10, 0, 0, 2);
 }
 
 /* ===== TABELLER ===== */
@@ -212,4 +220,135 @@
 
 .dialog-pane .content {
     -fx-padding: 20;
+}
+
+/* =========================================
+   ===== MÖRKT TEMA / DARK MODE STYLE =====
+   ========================================= */
+
+.root.dark-mode {
+    -fx-base: #1f1f1f;
+    -fx-background: #121212; /* Mycket mörk bakgrund */
+    -fx-text-fill: #E5E7EB;  /* Ljus text */
+}
+
+/* FIX: Tvinga bakgrundsfärgen i flikarnas innehållsyta att bli mörk */
+.root.dark-mode .tab-content-area {
+    -fx-background-color: #121212;
+}
+
+/* Mörka paneler - NYTT: Inkluderar .settings-section */
+.root.dark-mode .center-panel,
+.root.dark-mode .summary-box,
+.root.dark-mode .settings-section {
+    -fx-background-color: #1E1E1E;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.5), 10, 0, 0, 4);
+}
+
+/* Toppmeny */
+.root.dark-mode .top-bar {
+    -fx-background-color: #1E1E1E;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.5), 10, 0, 0, 2);
+}
+
+/* Sidomeny */
+.root.dark-mode .tab-pane > .tab-header-area {
+    -fx-background-color: #1E1E1E;
+}
+
+.root.dark-mode .tab:hover {
+    -fx-background-color: #2D2D2D;
+}
+
+.root.dark-mode .tab:selected {
+    -fx-background-color: #2D2D2D;
+    -fx-border-color: #60A5FA; /* Blå markör i dark mode */
+}
+
+.root.dark-mode .tab:selected .sidebar-icon {
+    -fx-icon-color: #60A5FA;
+}
+
+/* Textjusteringar */
+.root.dark-mode .label,
+.root.dark-mode .text {
+    -fx-text-fill: #E5E7EB;
+}
+
+.root.dark-mode .logo {
+    -fx-text-fill: #FFFFFF;
+}
+
+/* Tabeller i Dark Mode */
+.root.dark-mode .table-view {
+    -fx-background-color: #1E1E1E;
+}
+
+.root.dark-mode .table-view .column-header-background {
+    -fx-background-color: #2D2D2D;
+    -fx-border-color: #374151;
+}
+
+.root.dark-mode .table-view .column-header .label {
+    -fx-text-fill: #9CA3AF;
+}
+
+.root.dark-mode .table-cell {
+    -fx-text-fill: #E5E7EB;
+}
+
+.root.dark-mode .table-row-cell {
+    -fx-background-color: #1E1E1E;
+    -fx-border-color: #374151;
+}
+
+.root.dark-mode .table-row-cell:selected {
+    -fx-background-color: #374151; /* Mörkgrå markering */
+}
+
+/* Inputs & Knappar */
+.root.dark-mode .text-field,
+.root.dark-mode .combo-box {
+    -fx-background-color: #2D2D2D;
+    -fx-border-color: #4B5563;
+    -fx-text-fill: #FFFFFF;
+}
+
+.root.dark-mode .button {
+    -fx-background-color: #2D2D2D;
+    -fx-text-fill: #E5E7EB;
+    -fx-border-color: #4B5563;
+}
+
+.root.dark-mode .button:hover {
+    -fx-background-color: #374151;
+    -fx-border-color: #6B7280;
+}
+
+/* Accent knapp behåller färg men ljusnar lite vid hover */
+.root.dark-mode .accent-button {
+    -fx-background-color: #60A5FA; /* Ljusare blå */
+    -fx-text-fill: #000000;
+}
+
+.root.dark-mode .accent-button:hover {
+    -fx-background-color: #93C5FD;
+}
+
+/* Dialogrutor */
+.root.dark-mode .dialog-pane,
+.root.dark-mode .dialog-pane .header-panel {
+    -fx-background-color: #1E1E1E;
+}
+
+/* Lägg till detta i style.css */
+.section-header {
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #374151; /* Mörkgrå för ljust tema */
+}
+
+/* Lägg till detta under .root.dark-mode sektionen */
+.root.dark-mode .section-header {
+    -fx-text-fill: #E5E7EB; /* Ljusgrå/Vit för mörkt tema */
 }

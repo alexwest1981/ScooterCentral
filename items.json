@@ -60,7 +60,7 @@
     "hasElectricStart": true,
     "itemId": "1005",
     "name": "Ski-Doo Expedition Xtreme 850 E-TEC 2024",
-    "isAvailable": false,
+    "isAvailable": true,
     "currentRentalPrice": 340.0,
     "rentalCount": 1,
     "itemType": "Scooter"
@@ -82,7 +82,7 @@
     "hasElectricStart": true,
     "itemId": "1007",
     "name": "Lynx Shredder RE 850 E-TEC Turbo R 2024",
-    "isAvailable": false,
+    "isAvailable": true,
     "currentRentalPrice": 360.0,
     "rentalCount": 1,
     "itemType": "Scooter"
@@ -313,7 +313,7 @@
     "hasElectricStart": true,
     "itemId": "1028",
     "name": "Yamaha RS Venture TF 2023",
-    "isAvailable": false,
+    "isAvailable": true,
     "currentRentalPrice": 280.0,
     "rentalCount": 1,
     "itemType": "Scooter"
@@ -533,7 +533,7 @@
     "hasElectricStart": true,
     "itemId": "1048",
     "name": "Yamaha SRViper L-TX GT 2023",
-    "isAvailable": false,
+    "isAvailable": true,
     "currentRentalPrice": 290.0,
     "rentalCount": 1,
     "itemType": "Scooter"
@@ -644,7 +644,7 @@
     "maxWeightKg": 180,
     "itemId": "2009",
     "name": "Nila 2-sits Pulka",
-    "isAvailable": false,
+    "isAvailable": true,
     "currentRentalPrice": 130.0,
     "rentalCount": 1,
     "itemType": "Sled"

@@ -103,7 +103,7 @@ public class DashboardView extends BaseView {
         // Container för att centrera innehållet
         StackPane centerContainer = new StackPane();
         centerContainer.setAlignment(Pos.TOP_CENTER);
-        centerContainer.setPadding(new Insets(20)); // Lite luft runt hela
+        centerContainer.setPadding(new Insets(0)); // Lite luft runt hela
 
         // Huvudinnehållet med begränsad bredd
         VBox contentBox = new VBox(25); // Ökat avstånd mellan sektioner
@@ -142,7 +142,13 @@ public class DashboardView extends BaseView {
         // --- SEKTION 3: Pågående Uthyrningar ---
         VBox tableBox = new VBox(10);
         Label tableTitle = new Label("Pågående Uthyrningar");
-        tableTitle.setStyle("-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: #111827;");
+        // OBS: Denna titel har hårdkodad vit färg. Om du vill att den ska synas bra i Ljust läge
+        // bör du ändra färgen här eller i CSS. För Mörkt läge är vit perfekt.
+        // För nu låter jag den vara vit då den ligger på en mörk bakgrund i originaldesignen,
+        // men tänk på att i ljust läge kan den bli osynlig om bakgrunden är vit.
+        // En enkel fix är att använda en CSS-klass här med.
+        tableTitle.getStyleClass().add("section-header");
+        // tableTitle.setStyle("-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: #ffffff;");
 
         activeRentalsTable = createActiveRentalsTable();
         activeRentalsTable.setPrefHeight(350);
@@ -181,8 +187,13 @@ public class DashboardView extends BaseView {
         card.setAlignment(Pos.CENTER_LEFT);
 
         Label titleLbl = new Label(title);
-        titleLbl.setStyle("-fx-text-fill: #6B7280; -fx-font-size: 12px; -fx-font-weight: bold; -fx-text-transform: uppercase;");
-        valueLabel.setStyle("-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: #111827;");
+        // FIX: Använd CSS-klass istället för hårdkodad stil
+        titleLbl.getStyleClass().add("scorecard-title");
+        // titleLbl.setStyle("-fx-text-fill: #6B7280; -fx-font-size: 12px; -fx-font-weight: bold; -fx-text-transform: uppercase;");
+
+        // FIX: Använd CSS-klass istället för hårdkodad stil
+        valueLabel.getStyleClass().add("scorecard-value");
+        // valueLabel.setStyle("-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: #111827;");
 
         card.getChildren().addAll(titleLbl, valueLabel);
         return card;
