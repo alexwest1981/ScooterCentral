@@ -5,9 +5,9 @@
     "hasElectricStart": true,
     "itemId": "1000",
     "name": "Yamaha Sidewinder M-TX LE 153 2024 Racing Blue",
-    "isAvailable": true,
+    "isAvailable": false,
     "currentRentalPrice": 300.0,
-    "rentalCount": 2,
+    "rentalCount": 3,
     "itemType": "Scooter"
   },
   {
@@ -71,7 +71,7 @@
     "hasElectricStart": true,
     "itemId": "1006",
     "name": "Polaris Indy VR1 650 2024",
-    "isAvailable": false,
+    "isAvailable": true,
     "currentRentalPrice": 290.0,
     "rentalCount": 1,
     "itemType": "Scooter"
@@ -335,7 +335,7 @@
     "hasElectricStart": true,
     "itemId": "1030",
     "name": "Ski-Doo Freeride 850 E-TEC Turbo R 2024",
-    "isAvailable": false,
+    "isAvailable": true,
     "currentRentalPrice": 370.0,
     "rentalCount": 1,
     "itemType": "Scooter"

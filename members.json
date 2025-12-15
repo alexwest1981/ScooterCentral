@@ -32,7 +32,8 @@
     "status": "PREMIUM",
     "rentalHistory": [
       "1021",
-      "1022"
+      "1022",
+      "1031"
     ]
   },
   {
@@ -581,6 +582,15 @@
     "lastName": "Olsson",
     "phone": "070-9393939",
     "email": "mikael.olsson@scooterrental.se",
+    "status": "STANDARD",
+    "rentalHistory": []
+  },
+  {
+    "memberId": "M1002",
+    "firstName": "Alex",
+    "lastName": "Weström",
+    "phone": "123123123",
+    "email": "alex.westrm@scooterrental.se",
     "status": "STANDARD",
     "rentalHistory": []
   }

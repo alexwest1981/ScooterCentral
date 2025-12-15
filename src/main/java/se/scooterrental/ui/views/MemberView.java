@@ -18,6 +18,9 @@ import java.util.stream.Collectors;
 
 /**
  * Vy för att visa, söka, redigera och ta bort medlemmar.
+ * FIXAT: handleDeleteMember använder nu registry.removeMember() istället för att försöka
+ * ändra i den låsta listan.
+ * UPPDATERAD: Automatisk generering av e-post och validering.
  */
 public class MemberView extends BaseView {
 
@@ -166,6 +169,7 @@ public class MemberView extends BaseView {
         TextField lastNameField = new TextField(isEditing ? memberToEdit.getLastName() : "");
         TextField phoneField = new TextField(isEditing ? memberToEdit.getPhone() : "");
         TextField emailField = new TextField(isEditing ? memberToEdit.getEmail() : "");
+        emailField.setPromptText("Tomt = auto-generera"); // Tydlighet för användaren
 
         ComboBox<Member.MemberStatus> statusBox = new ComboBox<>(FXCollections.observableArrayList(Member.MemberStatus.values()));
         statusBox.setValue(isEditing ? memberToEdit.getStatus() : Member.MemberStatus.STANDARD);
@@ -213,25 +217,54 @@ public class MemberView extends BaseView {
                         }
                     }
 
+                    // Hämta värden från fält
+                    String fName = firstNameField.getText().trim();
+                    String lName = lastNameField.getText().trim();
+                    String phone = phoneField.getText().trim();
+                    String emailInput = emailField.getText().trim();
+                    Member.MemberStatus status = statusBox.getValue();
+
+                    // Validera grundläggande fält (Mer detaljerad validering sker i Member-objektet, men vi kollar här också för generering)
+                    if (fName.isEmpty()) throw new IllegalArgumentException("Förnamn krävs.");
+                    if (lName.isEmpty()) throw new IllegalArgumentException("Efternamn krävs.");
+
+                    // --- HANTERA EMAIL (Auto-generering & Validering) ---
+                    String finalEmail;
+                    if (emailInput.isEmpty()) {
+                        // Generera email: fornamn.efternamn@scooterrental.se
+                        // Rensar bort specialtecken och gör lowercase
+                        String safeFirst = fName.toLowerCase().replaceAll("[^a-z0-9]", "");
+                        String safeLast = lName.toLowerCase().replaceAll("[^a-z0-9]", "");
+                        finalEmail = safeFirst + "." + safeLast + "@scooterrental.se";
+                    } else {
+                        // Validera angiven email med Regex
+                        // Kräver minst tecken + @ + tecken + . + 2-6 tecken
+                        String emailRegex = "^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,6}$";
+                        if (!emailInput.matches(emailRegex)) {
+                            throw new IllegalArgumentException("Ogiltig e-postadress. Måste innehålla @ och giltig domän.");
+                        }
+                        finalEmail = emailInput;
+                    }
+
                     if (isEditing) {
                         // Uppdatera befintlig
                         memberToEdit.setMemberId(fullNewId);
-                        memberToEdit.setFirstName(firstNameField.getText());
-                        memberToEdit.setLastName(lastNameField.getText());
-                        memberToEdit.setPhone(phoneField.getText());
-                        memberToEdit.setEmail(emailField.getText());
-                        memberToEdit.setStatus(statusBox.getValue());
+                        memberToEdit.setFirstName(fName);
+                        memberToEdit.setLastName(lName);
+                        memberToEdit.setPhone(phone);
+                        memberToEdit.setEmail(finalEmail); // Spara den genererade/validerade mailen
+                        memberToEdit.setStatus(status);
                         registry.updateMember(memberToEdit); // Sparar också
                         return memberToEdit;
                     } else {
                         // Skapa ny
                         Member newMember = new Member(
                                 fullNewId,
-                                firstNameField.getText(),
-                                lastNameField.getText(),
-                                phoneField.getText(),
-                                emailField.getText(),
-                                statusBox.getValue()
+                                fName,
+                                lName,
+                                phone,
+                                finalEmail, // Spara den genererade/validerade mailen
+                                status
                         );
                         registry.addMember(newMember); // Sparar också
                         return newMember;
@@ -265,12 +298,16 @@ public class MemberView extends BaseView {
         Optional<ButtonType> result = confirm.showAndWait();
         if (result.isPresent() && result.get() == ButtonType.OK) {
 
-            registry.getMembers().remove(selected);
+            // FIX: Anropa registrets metod istället för att ta bort från den låsta listan
+            boolean removed = registry.removeMember(selected);
 
-            registry.saveData();
-
-            filterMembers();
-            showAlert(Alert.AlertType.INFORMATION, "Borttagen", "Medlemmen har tagits bort.");
+            if (removed) {
+                // registry.saveData(); <-- Behövs inte, removeMember gör detta
+                filterMembers(); // Uppdatera UI
+                showAlert(Alert.AlertType.INFORMATION, "Borttagen", "Medlemmen har tagits bort.");
+            } else {
+                showAlert(Alert.AlertType.ERROR, "Fel", "Kunde inte ta bort medlemmen.");
+            }
         }
     }
 

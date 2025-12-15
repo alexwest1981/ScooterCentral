@@ -363,8 +363,9 @@
       "policyType": "Standard"
     },
     "startTime": "2025-12-09 10:35:51",
-    "isActive": true,
-    "totalCost": 0.0
+    "endTime": "2025-12-15 08:57:15",
+    "isActive": false,
+    "totalCost": 41283.43333333333
   },
   {
     "id": "1027",
@@ -408,6 +409,15 @@
       "policyType": "Standard"
     },
     "startTime": "2025-12-09 10:36:27",
+    "endTime": "2025-12-15 08:56:25",
+    "isActive": false,
+    "totalCost": 52663.12777777778
+  },
+  {
+    "id": "1031",
+    "memberId": "M101",
+    "itemId": "1000",
+    "startTime": "2025-12-15 08:55:38",
     "isActive": true,
     "totalCost": 0.0
   }
